@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+html, body {
+  /*necessary to prevent user from finding empty space on the right caused by 150% width*/
+    max-width: 100%;
+    overflow-x: hidden;
+} 
+    #titlediv {
+       position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        color: black;
+        font-size: 100px;
+        font-family:'Abel';
+        text-shadow: 2px 2px 5px #000000;
+        background-color: gold;
+        width: 100%;
+        background-image: url(https://thumbs.dreamstime.com/b/squash-court-6847609.jpg)/*from https://www.dreamstime.com/photos-images/squash-court.html*/;
+        height: 1200px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        vertical-align:middle;      
+   }
+     
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+    
+
+
+    .navigation{
+  position:fixed;
+        background-color: red;
+        background-image: url(NavBar.png);
+        opacity: 80%;
+  width:100%;
+  z-index:2;
+}
+
+.navbar-right{
+  float:right;
+  padding-right:10%;
+  text-align: center;
+  display: inline-block;
+  line-height: 60px;
+
+}
+
+.navbar-right a{
+  text-decoration:none;
+  display: inline-block;
+  width: 100%;
+      font-size: 18px;
+  width: 200px;
+  color: white;
+      border: none;
+background-color: red;
+  font-family:Abel;
+  font-weight:900;
+  text-align: center;
+}
+
+.navbar-right a:hover{
+  text-decoration:underline;
+    color: red;
+    background-color: white;
+}
+    }
+
+        }
+.navbar-logo{
+  padding-left:40px;
+    filter: contrast(40%);
+  }
+    .About-title{
+        
+        background-image: url(SidePageBackgrounds.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-position: center;
+        background-color: /*in case image does not load*/ goldenrod;
+        color: black;
+        font-family: "Abel";
+        font-size: 50px;
+        text-align: center;
+        padding-top: 20px;
+        margin-top: 200px;
+        
+    }
+    .About-text{
+      background-image: url(SidePageBackgrounds.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-position: center;
+        background-color: /*in case image does not load*/ goldenrod;
+      color: black;
+        font-family: "Abel";
+        font-size: 20px;
+        text-align: center;
+        padding-top: 20px;
+        margin-top: 0px;
+    }
+    
+    .About-image{
+        width: 100%;
+        text-align: center;
+        position: relative;
+        display: flex;
+        background-color: black;
+        background-image: url(SidePageBackgrounds.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-position: center;
+        opacity: 90%
+    }
+    .About-image2{
+      background-image: url(SidePageBackgrounds.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-position: center;
+        background-color: /*in case image does not load*/ goldenrod;
+        text-align: left;
+        position: relative;
+        display: flex;
+        margin-left: 30px;
+        margin-bottom: 0px;
+    }
+    .About-text2{
+      background-image: url(SidePageBackgrounds.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-position: center;
+        background-color: /*in case image does not load*/ goldenrod;
+      text-align: left;
+      position: relative;
+      font-size: 20px;
+      padding-left: 30px;
+      margin-top: 0;
+      padding-top: 0;
+    }
+    .HISTORY-title{
+      background-image: url(SidePageBackgrounds.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-position: center;
+        background-color: /*in case image does not load*/ goldenrod;
+      text-align: center;
+      position: relative;
+      font-size: 50px;
+    }
+    .Squashpros-title{
+      text-align: right;
+      position: relative;
+      font-size: 40px;
+      bottom: 500px;
+      right: 300px;
+    }
+
+    .CanadianSlides {display: none}
+img {vertical-align: right;}
+
+/*container for the slideshow (similar to the quiz-container)*/
+.slideshow-container {
+  position: relative;
+  margin-right: 100px;
+  text-align: right;
+  bottom: 500px;
+}
+
+/*style for both buttons is the same, which is why I pooled them together. These are the arrow buttons.*/
+.back, .forward {
+  cursor: pointer;
+  position: absolute;
+  bottom: 50%;
+  /*vertically centers*/
+  width: auto;
+  /*width of the buttons themselves*/
+  padding: 16px;
+  margin-bottom: 12px;
+  /*minor tweaking*/
+  color: red;
+  /*canadian color*/
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease-in;
+  /*transition into hover for the button*/
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "forward button" to the right */
+.forward {
+  right: 0px;
+  border-radius: 3px 0 0 3px;
+}
+/*"Back button" to the left*/
+.back {
+    right: 629px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.back:hover, .forward:hover {
+  background-color: red;
+  color: white;
+  /*Canadian colours inverted, keeping it simple and fitting my success criteria*/
+}
+
+/* text below the image slideshow */
+.captiontext {
+  color: #f2f2f2;
+  /*settled for Canadian red. Note that my auto text shadows (from text styling earlier) will make the text look really good.*/
+  font-size: 20px;/*best fit*/
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 150%;/*only way I was able to position text right, caused some issues, but they were resulved*/
+  text-align: center;
+  justify-content: right;
+  
+}
+
+/* For the x/3 (1/3, 2/3, 3/3) */
+.x-outof-3text {
+  /*I can't use a slash in the title, weird*/
+  color: white;
+  font-size: 40px;
+  padding: 8px 8px;
+  position: absolute;
+  top: 10px;
+  /*will be positioned nicely in the top-left*/
+  padding-left: 700px;
+  /*this allows the text to appear on the image itself*/
+  /*something cool is that since the denominator (3) never changes, it remains constant during animation for a cool effect*/
+}
+
+/* The points at the bottom (outside of the image container) to also serve the same purpose as forward+back buttons. Extremely useful in a larger scenario if the user wants to get from say the 1st to 6th button out of 13.*/
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: black;
+  /*Squash colour*/
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  margin-right: 190px;
+  position: relative;
+  bottom: 500px;
+  /*This will actually allow the button to remain the same distance away from the image at all times. Because the background is moving with the image constantly, when the image moves 50 px, the background moves 50 px up, which means the button must also move 50px up to remain 500px away from the bottom*/
+}
+
+.active, .dot:hover {
+  background-color: yellow;
+  /*I have been sticking to the Canada colour scheme (and squash court background) too much here, and want to add in the squash scheme now*/
+}
+
+/* Fading animation of the slideshow images (fade-in)*/
+.fade {
+  animation-name: fade;
+  animation-duration: 2.5s;
+}
+/*going from translucent to fully visible*/
+@keyframes fade {
+  from {opacity: 20%} 
+  to {opacity: 100%}
+}
+
+</style>
+    <title>What is Squash</title>
+</head>
+<body>
+       
+      <div id="titlediv">
+          
+    <nav class="navigation">
+ 
+        
+<a href="Landing%20page%20design.html" class="navbar-logo"><img border="0" alt="onsquashlogo" src="O.NSquashLogo.png" width="62.5" height="50">
+</a>    
+        
+      <div class="navbar-right">
+        <a href="About.html">What is Squash?</a>
+        <a href="Skills.html">How To Play</a>
+        <a href="B4.html"target="_blank">Quiz</a>
+        <!--note we use target blank here to keep the quiz somewhat separate for the user to be able to return home after-->
+        <a href="Credits.html"target="_blank">Credits</a>
+        <!--the credits page will eliminate the need for a footer. I feel that almost nobody views these in a website, and it just clutters things up. I want users to go to this page for research as well, while still allowing all of my sources tobe cited.-->
+      </div>
+    </nav>       
+      
+          <p><b><br>WHAT IS SQUASH?</b></p>  
+    <header>
+        
+      
+        
+    </header>
+    
+    <div class="About-title">
+  
+        <h2>SQUASH<br></h2> <h5>IS IT A VEGETABLE?...</h5>
+        <img src="Khan.jpg" class="About-image" /> 
+        </div> 
+        <div class="About-text">
+        <p><br>Along with being one of the healthiest foods, squash is <i>also</i> the name of the <u>healthiest sport in the world,</u>actively participated in by over 20 million people! <!--https://www.gogateshead.com/article/5856/Introducing-the-healthiest-sport-in-the-world#:~:text=Squash%20came%20out%20on%20top,30%20minutes%2C%20and%20injury%20risk.--><br>This is because matches typically last 30 minutes, which is the perfect amount of time to maximize cardio, strength-bulding, muscle-endurance, and improve stamina. <br>Also, injury risk is relatively low in squash - I've played squash for over 7 years -in all that time, I have only experienced one shoulder injury, which was due to playing the sport every day for a year. <br>When mixed with proper load management, squash can be the perfect excersise, stretch, or form of enjoyment for everyone.<br>Although it is objectively the hardest racket sport to play, once you understand the rules, squash will become the <i>easiest</i> sport to understand. <br><br><br></p> 
+        <div class="HISTORY-title">
+        <h1>HISTORY</h1><h5>OF THE GAME</h5>
+      </div>
+        <img src="https://squashmagazine.com/wp-content/uploads/2013/03/Screen-Shot-2014-09-19-at-1.27.08-PM.png" class="About-image2" width="475" height="399.5"/>
+        <div class="About-text2">
+
+          <p>Photo of Jahangir Khan, the squash GOAT. <br><br>Squash was invented in 1830 by the harrow School in England. <br>By accident, the school realised that a slightly deflated ball would 'squash'<br> on impact against a wall. <br><br>The sport quickly travelled, reaching Asia and Europe, where legends were born, <br>and a competitive squash league was formed. <br><br>In 1880, the sport was introduced to North America, and a Canadian league <br>was founded in 1915. <!--https://squash.ca/history/--><br><br>Squash is the <i>oldest</i> modern-day racket sport ever created. <br> However, just because it is <i>old</i> does not mean it is <i>ancient</i>. </p>
+          <!--https://olympic.ca/sports/squash/#:~:text=Squash%20was%20invented%20at%20the,a%20greater%20variety%20of%20shots.-->
+        </div>
+        <div class="Squashpros-title"><p>CANADIAN SQUASH PROS<br></p></div>
+
+<div class="slideshow-container">
+
+  <div class="CanadianSlides fade">
+    <div class="x-outof-3text">1 / 3</div>
+    <img src="https://squash.ca/wp-content/uploads/2020/05/David-Baillargeon-e1595552420498.jpg" style="width:50%">
+    <div class="captiontext">David Baillargeon - current rank - #1 in Canada; 65 in the world. <br> Has participated in 10 PSA level tournaments. <br>Baillargeon is currently Sponsored by harrow. <br>Baillargeon was born in 1996. He is interested <br>in travelling, reading, nutrition and real estate.</div>
+  </div>
+  <!--here we need a separate div for each individual slide so that it can appear as a different slide-->
+  <!--caption Text is subject to change-->
+  <div class="CanadianSlides fade">
+    <div class="x-outof-3text">2 / 3</div>
+    <img src="https://dbukjj6eu5tsf.cloudfront.net/cornellbigred.com/images/2011/12/7/bio_n_sachvie.jpg" style="width:50%">
+    <div class="captiontext">Nick Sachvie - #2 in Canada, former world # 83. <br>Cornell communications alumni (2010-2014); <br>captian of Cornell squash team. <br>Born in Ontario, 1991, Sachvie is sponsored by Harrow. <br>Sachvie is coached by his father, <br>and is interested in spicy food, boxing and golf. </div>
+  </div>
+  
+  <div class="CanadianSlides fade">
+    <div class="x-outof-3text">3 / 3</div>
+    <img src="http://www.sportageous.co/wp-content/uploads/2020/05/hollie-naughton.jpg" style="width:50%">
+    <div class="captiontext">Hollie Naughton - Women's division - #1 in Canada, world # 17. <br>Canada's highest level squash representitive, <br>Naughton was born in Barnsley, England in 1994, <br>but was raised in Canada. <br>Currently, she is sponsored by Wilson. <br>Naughton is interested in bike rides and travelling.</div>
+  </div>
+  <!--This code makes it easy to add more - some java needs changing, but other than that it's a matter of duplicating one and making a few tweaks-->
+  
+  <a class="forward" onclick="plusSlides(1)">❯</a>
+  <!--The forward button will add a slide, and the back one will add -1 slide (meaning it will go back one slide).-->
+  <a class="back" onclick="plusSlides(-1)">❮</a>
+  
+  </div>
+  <br>
+  
+  <div style="text-align:right">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+    <span class="dot" onclick="currentSlide(3)"></span> 
+    <!--Ensures that the dots will take the user to the correct slide-->
+  </div>  
+      </div>
+          </div>
+    
+          <script>
+            //I like to define all terms first, even if it ends up being messy
+            let i;
+              let dots = document.getElementsByClassName("dot");
+              //collect the input given by the dots.
+              let slides = document.getElementsByClassName("CanadianSlides");
+              //collects the input from CanadianSlides to allow slides being the slide number the user is on
+            var slideIndex = 1;
+            //we need to give a value to the very first slide. It makes the most sense to keep this first slide at '1'
+            showSlides(slideIndex);
+            //displays the first slide to begin with. Baillargeon is the tallest photo, which is why I want it to appear first.
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+            //The function seen above adds a value of 1 to 'n' (moving the slide up by 1)
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+            //after the slide is added, the new slide must be shown
+            function showSlides(n) {
+              //I can't add the bottom lines (until 393) above, as it belongs in the 'showSlides' function. Otherwise, it will not work at all
+              if (n > slides.length) {slideIndex = 1}
+              // More defining, kind of. I am using if statements to give slideIndex an actual value. Basically when 'n' is greater than 3 (length of slides), the count returns back to zero. This is not necessary, but it allows the slideshow to loop     
+              if (n < 1) {slideIndex = slides.length}
+              //When n is less than 1, the slide must also reset. This can happen if the user clicks the back button on the first page.
+            //I haven't been referencing this enough, but there is lots of pagination involved. Please see my quiz annotations for more information on pagination.  
+            
+              for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+              }
+              //this code allows the slides to remain hidden (it hides every slide)
+              for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+                //replaces all active dots with "" - they will be the same colour as when hovered upon.
+              }
+              slides[slideIndex-1].style.display = "block"; 
+              //displays only the current slide. 
+              dots[slideIndex-1].className += " active";
+              //makes the current slide's dot the 'active' one
+            }
+            </script>
+            
+    </body>
+    
+    
+    
+</html>
+

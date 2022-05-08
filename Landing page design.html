@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+    
+    #titlediv {
+       position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        color: black;
+        padding-bottom:90px;
+        font-size: 70px;
+        font-family:'Abel';
+        text-shadow: 2px 2px 5px #000000;
+        text-align: center;
+   }
+    
+    .title {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        color: #000000;
+        padding-top: 160px;
+        font-size: 30px;
+        font-family:'Abel';
+        text-align: center;
+    }
+     
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+    display: flex;
+  position: relative;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+    opacity: 70%;
+}
+
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  font-family:Abel;
+  font-weight:900;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: yellow;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: yellow;
+  color: black;
+}
+    
+
+    .navigation{
+  padding-top:10px;
+  position:fixed;
+        top:0px;
+        background-color: black;
+        opacity: 100%;
+  top:0;
+  width:100%;
+  z-index:2;
+}
+
+.navbar-right{
+  float:right;
+  padding-right:10%;
+  padding-bottom: 10px;
+
+}
+
+.navbar-right a{
+  text-decoration:none;
+    margin: 70px;
+      font-size: 18px;
+  padding: 10px;
+  width: 200px;
+  color: yellow;
+      border: none;
+background-color: #000;
+  font-family:Abel;
+  font-weight:900;
+}
+
+.navbar-right a:hover{
+  text-decoration:underline;
+    color: black;
+    background-color: yellow;
+}
+    
+
+      
+
+       
+    .rotate {
+position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+  animation: rotation 20s infinite linear;
+  margin-bottom: 260px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}    
+    
+    .arrow{
+        position: absolute;
+        bottom:0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin:auto;
+        
+    }
+    
+    .About-title{
+        
+        background-color: black;
+        color: darkgoldenrod;
+        font-family: "Abel";
+        font-size: 50px;
+        text-align: center;
+        padding-top: 20px;
+    }
+    
+    #About-textdiv{
+        
+        font-size: 30px;
+        text-align: left;
+        padding-left: 50px;
+    }
+    
+    .About-image{
+        right:0;
+        bottom: 50;
+        padding-right: 50px;
+        text-align: right;
+        position: absolute;
+        display: flex;
+        background-color: black;
+    }
+    
+    #Charts
+            {
+                width:100%;
+                background-color: black;
+            }
+</style>
+    <title>O.N.SQUASH</title>
+</head>
+<body>
+       
+      <div id="titlediv">
+          
+          <p><b>O.N. SQUASH</b></p>  
+          
+          <img src="O.NSquashLogo.png" class="rotate" width="300" height="250" align="middle"/>  
+ 
+          <img src="Arrow.png" class="arrow" width="300" height="250" align="middle"/>  
+      </div>   
+
+                    
+    
+        
+      <p class="title"> <br> THE GAME FOR EVERYONE <br>LE JEU POUR TOUS</p>
+    <header>
+  <div class="header">
+    <nav class="navigation"> 
+        
+      <div class="navbar-right">
+        <a href="About.html">What is Squash?</a>
+        <a href="Skills.html">How To Play</a>
+        <a href="B4.html"target="_blank">Quiz</a>
+        <a href="Credits.html"target="_blank">Credits</a>
+        <!--note we use target blank here to keep the quiz somewhat separate for the user to be able to return home after-->
+          <button id="myBtn" onclick="myFunction()">Pause</button>
+      </div>
+    </nav>
+     
+<video autoplay muted loop id="myVideo">
+  <source src="landingpagevid.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+
+      
+<script>
+    
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+
+    
+</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> 
+      
+      
+      
+        </div>
+        
+      
+        
+    </header>
+    
+    <div class="About-title">
+  
+        <h2>SQUASH: A VANISHING GAME</h2> 
+        <img src="https://www.proclub.com/src/assets/images/fitnessSport/CLUB_H__SQUASH_HOME_070821.jpg" class="About-image" width="500" height="250"/>
+            <div id="About-textdiv">
+       <p> The Ontario squash community has taken a large hit following the <br> COVID-19 Pandemic. In 2019, over 1000 boys participated in <br>professional squash tournaments. <!--https://www.squashontario.com/rankings-information--> Today, that number is less than 200. <br><br>O.N. Squash aims to revive the squash community, <br>and get more shoes on courts!<br><br><br>Through two pages and a quiz, your squash knowledge will be <i>improved</i> and <i>tested.</i><br><br>Do YOU have what it takes to be a squash pro?<br>It's time to find out...<br><br><br></p>
+        
+                <table id="Charts">
+            <tr>
+                <td width="50%"><canvas id="chart1"></canvas></td>
+                <td width="50%"><canvas id="chart2"></canvas></td>  
+            </tr>
+                   
+        </table>
+           <p> As you can see above, squash is about as popular as racketball today. <br>Furthermore, the majority of squash pros are Egyptian - which is a large part of why squash can never be an Olympic sport. <br> Many people are afraid to try squash, because it seems too complicated - and they're right! However, it doesn't matter how good you are. <br>Everybody starts somewhere - take Ali Farag, former world #182, and current world #1. <br> That being said, former champion Gregory Gaultier dropped from #13 to # 97 - proving just how close the squash competition is. <br> And we all know, the closer the competition, the more exciting the match.<br><br></p>     
+        </div>
+            </div>
+
+        
+        
+
+     <script type="text/javascript">
+            //Badminton: https://www.realbuzz.com/articles-interests/sports-activities/article/top-10-most-popular-participation-sports-in-the-world/#:~:text=But%20badminton%20is%20an%20extremely,game%20hailing%20from%20the%20continent.
+            
+            //Squash: https://www.squashrevolution.com/about-squash.html#:~:text=Over%2020%20million%20squash%20players,wide%20in%20over%20185%20countries.
+            
+            //Tennis: https://tenniscreative.com/how-many-people-play-tennis/#:~:text=Based%20on%202019%20data%2C%2087,tennis%20players%20ranked%20in%202017.
+            
+            //Table Tennis: https://www.pledgesports.org/2017/06/top-10-most-popular-sports-in-the-world-by-participation/#:~:text=Table%20Tennis,people%20worldwide%20play%20table%20tennis.
+            
+            //Racquetball: https://www.athleticscholarships.net/history-of-racquetball.htm
+            xValues1 = ["Badminton", "Tennis","Squash", "Table Tennis", "Racquetball"];
+            yValues1 = [220,87,20,300,20];
+            xValues2= ["2014","2015","2016","2017","2018","2019","2020","2021","2022"]
+            Gaultier = [1, 3, 2, 1, 3, 13, 97, 25, 0,];
+         //0 means that a player has retired, therefore unranked
+            Matthew = [2, 2, 3, 4, 12, 0, 0, 0, 0,]
+            Elshorbagy = [3, 1, 1, 3, 1, 2, 1, 2, 3,]
+            Farag = [182, 73, 11, 6, 2, 1, 2, 1, 2,]
+            Coll = [86, 83, 37, 13, 9, 5, 5, 4, 1,]
+            //Data from: https://psaworldtour.com/rankings/world_tour?g=men&year=2014
+            
+            sliceColours = ["yellow","green","white","red","blue"];
+
+            
+            new Chart("chart1", 
+            {
+                type: "doughnut",
+                data: 
+                {
+                    labels: xValues1,
+                    datasets: 
+                    [{
+                        backgroundColor: sliceColours,
+                        data: yValues1,
+                        borderColor: "gold"
+                    }]
+                },
+                options: 
+                {
+                    legend: 
+                    {
+                        display: true,
+                        position: "bottom"
+                    },                    
+                    title: 
+                    {
+                        display: true,
+                        text: "Number of players in each racket sport (million)"
+                    }
+                }
+            });
+            
+            new Chart("chart2", 
+            {
+                type: "line",
+                data: 
+                {
+                    labels: xValues2,
+                    datasets: 
+                   [{
+                       //keep in mind that all colors will be non-hex codes for now. I would in the future like to ideally make the colours of the lines the same as the players' country.
+                        label: "Gregory Gaultier",
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: "red",
+                        borderColor: "white",
+                        data: Gaultier
+                    },
+                    {
+                        label: "Nick Matthew",
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: "orange",
+                        borderColor: "blue",
+                        data: Matthew
+                    },
+                    {
+                        label: "Mohamed Elshorbagy",
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: "yellow",
+                        borderColor: "goldenrod",
+                        data: Elshorbagy
+                    },
+                    {
+                        label: "Ali Farag",
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: "green",
+                        borderColor: "red",
+                        data: Farag
+                    },
+                    {
+                        label: "Paul Coll",
+                        fill: false,
+                        lineTension: 0,
+                        backgroundColor: "blue",
+                        borderColor: "orange",
+                        data: Coll
+                    }]
+                   
+            },
+                
+                 options: 
+                {
+                    legend: 
+                    {
+                        display: true,
+                        position: "right"
+                    },
+                    scales: 
+                    {
+                        yAxes: 
+                        [{
+                            scaleLabel: {display: true,labelString: 'Rank'}
+                        }],
+                        xAxes: 
+                        [{
+                            scaleLabel: {display: true,labelString: 'Year'}
+                        }]
+                    },
+                    title: 
+                    {
+                        display: true,
+                        text: "Squash Pro Rankings (2014-2022)"
+                    }
+                      }
+            });
+                
+        </script>
+
+
+
+
+
+
+
+
+
+    
+    </body>
+    
+    
+    
+</html>
+

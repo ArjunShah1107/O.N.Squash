@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<!-- HTML - note that I am only looking at the code for the quiz itself. I do expect to have some extra text on the quiz side-page, and possibly a main page above the quiz itself, but this will all be omitted for now, as it is irrelevant. The quiz also opens as a separate (target blank) page, which is why there is no need to add a navigation bar.
+
+This will be divided into three sections (html, css, java respectively). The HTML is fairly simple, as most ids were defined in css and java. I don't want to go over this, as it is fairly simple, so I will only shortly describe each aspect.-->
+<html>
+<!--website title-->
+<title> Squash Quiz</title>
+<!--website icon-->
+<link rel="icon" type="image/x-icon" href="O.NSquashLogo.png">
+<!-- this is placed outside of the quiz container div to ensure that it remains a part of the quiz always-->
+<div id="header"><h1>SQUASH QUIZ</h1></div>
+<!--this will be changed using pagination (described below). It is where the quiz itself will be-->
+<div class="quiz-container">
+  <div id="quiz"></div>
+<!--button to go back to the last question - it only appears once the user is past the first question, using java-->
+<button id="last">One Step Back</button>
+<!-- next question button; disappears once user is at last question-->
+<button id="next">One Step Forwards</button>
+<!--Button to submit quiz - it only appears on the last page-->
+<button id="submitbutton">Let's Squash this quiz!</button>
+<!-- once the user has submitted, their results will show up-->
+<div id="results"></div>
+
+
+    <style>
+/*CSS - Cascading Style Sheets is the most fun element of code. I don't want to go over anything here, as these can all be changed, to make the website appear better. This directly impacts the UX. The colours chosen for now are not great. Please excuse the use of colour names over hex codes - Eventually, I will change up different areas here to make things even better. */
+#header{
+    font-size: 30px;
+    font-weight: 700;
+}
+body{
+  font-size: 20px;
+  font-family: 'Abel';
+  color: darkgoldenrod;
+/* not really a background image, this is essentially just a black background with two different squash pros on either side*/
+  background-image: url("Quizbackground.jpg");
+  /*In case the background image does not load, I want a nice colour to fall back on*/
+  background-color: black;
+  background-repeat: no-repeat, repeat;
+  background-size: 1500px;
+  padding-top: 0px;
+  padding-left: 450px;
+
+}
+.question{
+  font-weight: 600;
+  color: goldenrod;
+
+}
+.answers {
+    margin-bottom: 20px;
+}
+#submitbutton{
+  font-family: 'Abel';
+  font-size: 40px;
+  color: #5f4b8b;
+  background-color: #ec9688;
+  border: 4px;
+  border-color: yellow;
+  border-radius: 4px;
+  padding: 20px;
+  cursor: pointer;
+  margin-top: 200px;
+}
+#submitbutton:hover{
+  color: black;
+  background-color: yellow;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: bold;
+}
+        #next{
+ font-family: 'Abel';
+  font-size: 40px;
+  background-color: gold;
+  color: black;
+  border: 1px;
+  border-radius: 4px;
+  padding: 20px;
+  cursor: pointer;
+  margin-top: 200px;           
+}
+#next:hover{
+  color: white;
+  background-color: goldenrod;
+  cursor: pointer;
+}
+        #last{
+ font-family: 'Abel';
+  font-size: 40px;
+  background-color: gold;
+  color: black;
+  border: 1px;
+  border-radius: 4px;
+  padding: 20px;
+  cursor: pointer;
+  margin-top: 200px;           
+}
+#last:hover{
+  color: white;
+  background-color: goldenrod;
+  cursor: pointer;
+}
+.slide{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+    /*the slide will take up the whole space
+    
+    we use z-index to ensure that the (hidden) slide is not going to interfere with the (current) slide*/
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 2s;
+}
+.visible-slide{
+/* this is the visible slide, and it will be the only slide which can be accessed*/
+  opacity: 1;
+  z-index: 2;
+}
+.quiz-container{
+    /*as mentioned in the HTML section, this is where the actual quiz will be*/
+  position: relative;
+  height: 300px;
+  width: 800px;
+  margin-top: 40px;
+}
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+}
+/* Allow all colors to remain as non-hex codes until I have finalized that*/
+
+
+    </style>
+    
+    <!-- expect a lot more annotations from here on out-->
+    <body>
+    <script>
+    
+        //some java of quiz was branched off from: https://simplestepscode.com/javascript-quiz-tutorial/
+        
+      //JS - this is the part of my code which I will talk the most about, as certain parts of it/ choices I made will not make as much sense as the CSS and HTML. The whole point of this code is to make it easy to add many questions whenever I want, which is why everything is done in one quiz container, and there is a space (myQuestions) where questions can be added. 
+(function(){
+  // Function - a block of code to perform a specific task, in this case building the quiz
+  function buildQuiz(){
+    const output = [];
+
+    // Each part of this function is a specific part of the quiz
+   
+    myQuestions.forEach(
+      (currentQuestion, questionNumber) => {
+          //the array of questions (formulated below) will be displayed in order of question number, and the current question will matter later to find which question comes next
+
+        const answers = [];
+          //this is the list of possible answers (different optio ns which the user can select)
+
+        for(letter in currentQuestion.answers){
+//for each possible answer, a button needs to be added so that the user can actually select them.
+          answers.push(
+            `<label>
+              <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${letter} :
+              ${currentQuestion.answers[letter]}
+            </label>`
+          );
+        }
+
+// this adds the lists of questions and answers to the output.
+          
+          output.push(
+              //remember that everything is broken up into slides.
+          `<div class="slide">
+            <div class="question"> ${currentQuestion.question} </div>
+            <div class="answers"> ${answers.join("")} </div>
+          </div>`
+        );
+      }
+    );
+
+    quizContainer.innerHTML = output.join('');
+      //the output (mentioned above) is transformed into a string of HTML (explaining the lack of HTML above), and is placed in the quizContainer div.
+  }
+
+  function showResults(){
+      //this is the function to show the user their results(# of questions correct out of_)
+
+    const answerContainers = quizContainer.querySelectorAll('.answers');
+//the answer container is created in the quiz container
+    let numCorrect = 0;
+//we need to keep track of the user's # of questions correct. Initially, it must equal zero.
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+//Each question has a specific answer, and as of right now, every possible answer is considered correct. We need to have each current question contain the right answer. 
+      const answerContainer = answerContainers[questionNumber];
+      const selector = `input[name=question${questionNumber}]:checked`;
+      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+//this will check the user's answer.
+
+        if(userAnswer === currentQuestion.correctAnswer){
+        // if the answer is correct, we add one to the # correct (which is initially at zero)
+        numCorrect++;
+
+//this happens in the end, but goes along with "if the answer is correct", as a correct answer will cause the list of questions to turn green
+            answerContainers[questionNumber].style.color = '#007A33';
+      }
+      // for wrong answers, the text goes red. I used an if/else format, as skipped answers needed to be considered wrong as well.
+      else{
+        answerContainers[questionNumber].style.color = '#CE1141';
+      }
+    });
+
+    //because we have kept track of the # of correct answers, as well as the amount of questions, this is fairly simple to write. 
+    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length} - You gave it your all! Now, go back to look at your answers!`;
+  }
+
+  //This line of code is still in the works. I do not think I have enough skill to be able to if (numCorrect=== myQuestions.length){resultsContainer.innerHTML = 'Excellent work! You are the best of the best' }else{resultsContainer.innerHTML='You Gave it your all, champ! Try again!' } - I was continuously experiencing an error that the numCorrect is not defined. I think with more time I could handle this, but there is no need right now, as it was really just an extra line of code to make things better.  
+
+    //now we begin the main js focus for this entire project: Pagination. 
+    //Pagination is ujsed everywhere. Some common examples of it are with navigation bars (kind of), or page 2 of google search results (which NOBODY looks at). For navigation bars, those are a branch of pagination, but those link you typically to an entirely different page. With pagination, all information is on one page, but is hidden (think GOOGLE SLIDES, or POWERPOINT). This is used in most quizzes, as it does not bombard the user with all questions on one page, allowing them to finish one, and move to the next. 
+  function showSlide(n) {
+//the function to show a specific slide.
+    slides[currentSlide].classList.remove('visible-slide');
+    //if you remember from above, visible slide is the only visible slide. However, we need a way to make every slide visible at least once. This code will do so, as the current slide gets removed.
+    slides[n].classList.add('visible-slide');
+    currentSlide = n;
+      //the slide defined as 'n' becomes the visible slide.
+    if(currentSlide === 0){
+        //this code was way easier than I expected. basically, for the first page (when the current slide is at a value of zero), the previous button can not be displayed, as it would not work. 
+      lastButton.style.display = 'none';
+    }
+    else{
+      lastButton.style.display = 'inline-block';
+    }
+      //the following is the exact same thing, only with the next and submit buttons. surprisingly, these both could have been done together, as the only time the next button doesnt appear is the ONE time the submit button does. the slide length starts at a value of zero, which is why the -1 is necessary
+    if(currentSlide === slides.length-1){
+      nextButton.style.display = 'none';
+      submitButton.style.display = 'inline-block';
+    }
+    else{
+      nextButton.style.display = 'inline-block';
+      submitButton.style.display = 'none';
+    }
+  }
+//the next button and last button both need to be defined here. The submit button will be done later. These go together, although their purpose is opposite. THe only difference between the two is that the next slide advances the current slide count by 1, with the previous slide decreasing the count by 1.
+  function showNextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function showPreviousSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  //We need to define the variables, and add them to the myQuestions library. 
+    //this will make the code above make sense. There could have been a much longer way of doing this, but from what I have learned in class, this is the easiest way - to create a library which can make adding questions much easier. I am confident that this is the easiest method, and all the code above was worth it - maybe not for 1 or two questions, but for 5, 10, even 20 (I want this quiz to eventually have LOTS of questions, but due to acreativity block, can only think of 5 for now));
+    //const is used to prevent the variable from changing/being modified. Here, we define all containers. I personally think it means constrict, but have not found anything on it. It essentially is used to prevent errors/the possiblity of errors.
+    const quizContainer = document.getElementById('quiz');
+    //quiz displays the quiz
+  const resultsContainer = document.getElementById('results');
+    //results displays the number of questions correct out of the total number of questions.  
+  const submitButton = document.getElementById('submitbutton');
+    //submit button - to actually submit the quiz
+  const myQuestions = [
+    {
+        //I will only give one sample analysis here, I'm not going into every question.
+        //the question has been defined above as the current question. Because everything appears in the order it is in, this will appear first. 
+      question: "<em>Who invented squash?</em>",
+      //The list of possible answers. 
+        answers: {
+        a: "Harrow School<br>",
+            //notice a line break was utilized to keep all information on separate lines. There is no point in using an ol, as variables a, b and c need to be used to declare the correct answer.
+            //notice that 'a' (which is the correct answer) is not any different from all other possible answers. It is still a possible answer, along with all others.
+        b: "Sir Patrick Stewart<br>",
+        c: "Major Walter Clopton Wingfield"
+      },
+      correctAnswer: "a"
+        //the correct answer needs to be defined. 
+    },
+    {
+      question: "Which of these is <i>not</i> considered out of bounds on a squash court?",
+      answers: {
+        a: "The roof, as the ball is still considered <i>in</i><br>",
+        b: "The tin<br>",
+        c: "The back glass"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "How was the name 'squash' invented?",
+      answers: {
+        a: "The inventor was a squash farmer<br>",
+        b: "The sport was originally created as a weapon to 'squash' opponents, using <br> only a stick and a ball<br>",
+        c: "The term was coined based on the way the ball 'squashed' itself <br>against the wall<br>",
+        d: "None of the above"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Which of these is <i>not</i> an official squash ball?",
+      answers: {
+        a: "The 1-dot ball<br>",
+        b: "The 2-dot ball<br>",
+        c: "The 3-dot ball"
+      },
+      correctAnswer: "c"
+    },
+    {
+      question: "Which of these is not an official squash tournament (for U19)?",
+      answers: {
+        a: "Grand Prix<br>",
+        b: "Silver<br>",
+        c: "Gold<br>",
+        d: "Platinum"
+      },
+      correctAnswer: "d"
+    },
+    {
+      question: "Which of the following is <i><em>not</em></i> a <i>necessary</i> piece of equipment to play squash?",
+      answers: {
+        a: "Squash Racket<br>",
+        b: "Squash Goggles<br>",
+        c: "Squash Shoes<br>",
+        d: "Squash Gloves"
+      },
+      correctAnswer: "d"
+    }
+  ];
+
+//function build quiz from earlier - this is the starting point to show the output (if you remember, the build quiz function contains the output (questions and answers))
+    buildQuiz();
+
+  // This is everything from Pagination - in a way, this is pagination. Everything here should make sense based on everything learned above.
+    //first, the button to go back gets defined. Once again, I will be sticking to const to prevent any errors
+  const lastButton = document.getElementById("last");
+    //next, coincidentally, is the next button. 
+  const nextButton = document.getElementById("next");
+    //the slide node list is below.
+  const slides = document.querySelectorAll(".slide");
+    //current slide needs to equal zero for the same reasons as numcorrect.
+  let currentSlide = 0;
+
+  // We want the first slide to be displayed first (remember currentSlide is a changing variable, and at the start, it is the first slide)
+  showSlide(currentSlide);
+
+  // Event listeners are used to give the buttons an output. Finally, the submit button's use is seen. the showResults function from earlier only happens with the submit button being clicked.
+  submitButton.addEventListener('click', showResults);
+    //the previous slide is shown when the last button is clicked
+  lastButton.addEventListener("click", showPreviousSlide);
+    // the next slide is shown whent the next button is clicked
+  nextButton.addEventListener("click", showNextSlide);
+})();
+
+    </script>
+        
+<!-- NOTE: What follows is not my code, but were necessary to prevent the user from cheating. Full credit goes to: http://andrewstutorials.blogspot.com/2014/03/disable-ways-to-open-inspect-element-in.html, who managed to get every possible combination and remove it from the quiz. Just try double clicking! I will still do my best to annotate the code to prove I understand it-->
+        
+        
+        <body oncontextmenu="return false";>
+            <!--this first one is just for the right click, as that is considered the oncontextmenu--> 
+       <script>
+           //now the keys all follow. The code gets repetitive, so I won't repeat myself too much.
+        document.onkeydown = function(e) {
+  alert("Hey! \nAre you seriously trying to cheat?! \nTake it easy, it's just a quiz!\n\n of course, if you ACCIDENTALLY pressed the wrong button by some 'random' luck, just - don't make it happen again!");
+ 
+            //I added this alert message. I hate alert messages, and so do users, which makes it the perfect punishment.
+  if(event.keyCode == 123) {
+     return false;
+      
+      //for F12, which is another way to inspect the element.
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+     return false;
+      //for command+shift+I
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+     return false;
+      alert("Hello! I am an alert box!!");
+      //for command+shift+C, another way to inspect the element. 
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+     return false;
+      //for command+shift+J - I do not want to change Andrewstutorials' code at all, which is why I kept this, otherwise it really makes no difference at all.
+  }
+  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+     return false;
+      //for command+U, which underlines text. I am once again not sure why andrewstutorials has chosen to add this, but I did not want to delete it.
+  }
+}
+        </script>
+        
+
+</body>
+</script>

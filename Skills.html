@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+html, body {
+  /*necessary to prevent user from finding empty space on the right caused by 150% width*/
+    max-width: 100%;
+    overflow-x: hidden;
+} 
+    #titlediv {
+       position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        color: black;
+        font-size: 90px;
+        font-family:'Abel';
+        text-shadow: 2px 2px 5px #000000;
+        background-color: gold;
+        width: 100%;
+        background-image: url(https://thumbs.dreamstime.com/b/squash-court-6847609.jpg)/*from https://www.dreamstime.com/photos-images/squash-court.html*/;
+        height: 1200px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;           
+   }
+     
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+    
+
+
+    .navigation{
+  position:fixed;
+        background-color: red;
+        background-image: url(NavBar.png);
+        opacity: 80%;
+  width:100%;
+  z-index:2;
+}
+
+.navbar-right{
+  float:right;
+  padding-right:10%;
+  text-align: center;
+  display: inline-block;
+  line-height: 60px;
+
+}
+
+.navbar-right a{
+  text-decoration:none;
+  display: inline-block;
+  width: 100%;
+      font-size: 18px;
+  width: 200px;
+  color: white;
+      border: none;
+background-color: red;
+  font-family:Abel;
+  font-weight:900;
+  text-align: center;
+}
+
+.navbar-right a:hover{
+  text-decoration:underline;
+    color: red;
+    background-color: white;
+}
+    }
+
+        }
+.navbar-logo{
+  padding-left:40px;
+    filter: contrast(40%);
+  }
+    .Rules-title{
+        
+        background-image: url(SidePageBackgrounds.jpg);
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-position: center;
+        background-color: /*in case image does not load*/ goldenrod;
+        color: black;
+        font-family: "Abel";
+        font-size: 50px;
+        text-align: left;
+        margin-top: 200px;
+        padding-top: 20px;
+        padding-left: 50px;
+    }
+    .Rules-text{
+        font-size: 25px;
+        text-align: left;
+        padding-left: 0px;
+    }
+
+    .Rules-image{
+        right:0;
+        bottom: 50;
+        text-align: right;
+        position: absolute;
+        display: flex;
+        margin-right: 50px;
+    }
+    .Refer-text{
+        left:0;
+        text-align: left;
+        position: absolute;
+        display: flex;
+        margin-right: 50px;
+        font-size: 20px;
+        padding-bottom: 200px;
+        line-height:0px;
+        padding-left: 30px;
+    }
+    
+    .SquashCourt {
+        position: relative;
+        text-align: center;
+        color: white;
+        margin-left: -50px;
+    }
+
+.left-out {
+  position: absolute;
+  top: 150px;
+  left: 30px;
+  transform: rotate(13deg);
+}
+.left-wall {
+  position: absolute;
+  top: 450px;
+  left: 150px;
+  transform: rotate(4deg);
+}
+
+.right-out {
+  position: absolute;
+  top: 150px;
+  right: 30px;
+  transform: rotate(-13deg);
+}
+.right-wall {
+  position: absolute;
+  top: 450px;
+  right: 150px;
+  transform: rotate(-4deg);
+}
+
+.front-wall {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.out-top {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.service-line {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+}
+.tin {
+  position: absolute;
+  top: 63.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  border: none;
+  background-color: inherit;
+  font-family: inherit;
+  cursor:text;
+  text-shadow: 2px 2px 5px #000000;
+  color: black;
+}
+.SquashCourt:hover{
+  color: black;
+}
+.SquashCourtTitle{
+  background-color: black;
+  color: white;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+}
+.front-court {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%)rotateX(30deg);
+}
+.short-line {
+  position: absolute;
+  bottom: 15%;
+  left: 45%;
+  transform: translate(-50%, -50%)rotateX(30deg);
+  font-size: 25px;
+}
+.half-line {
+  position: absolute;
+  bottom: 6%;
+  left: 51%;
+  transform: translate(-50%, -50%)rotateX(30deg)rotateZ(90deg);
+  font-size: 25px;
+}
+.service-left {
+  position: absolute;
+  bottom: -2%;
+  left: 10%;
+  transform: translate(-50%, -50%)rotateX(50deg);
+}
+.service-right {
+  position: absolute;
+  bottom: -2%;
+  right: -5%;
+  transform: translate(-50%, -50%)rotateX(50deg);
+}
+</style>
+    <title>How To Play</title>
+</head>
+<body>
+       
+      <div id="titlediv">
+          
+    <nav class="navigation">
+ 
+        
+<a href="Landing%20page%20design.html" class="navbar-logo"><img border="0" alt="onsquashlogo" src="O.NSquashLogo.png" width="62.5" height="50">
+</a>    
+        
+      <div class="navbar-right">
+        <a href="About.html">What is Squash?</a>
+        <a href="Skills.html">How To Play</a>
+        <a href="B4.html"target="_blank">Quiz</a>
+        <!--note we use target blank here to keep the quiz somewhat separate for the user to be able to return home after-->
+        <a href="Credits.html"target="_blank">Credits</a>
+        <!--the credits page will eliminate the need for a footer. I feel that almost nobody views these in a website, and it just clutters things up. I want users to go to this page for research as well, while still allowing all of my sources tobe cited.-->
+      </div>
+    </nav>       
+      
+          <p><b><br>HOW TO PLAY</b></p>  
+    <header>
+        
+      
+        
+    </header>
+    
+    <div class="Rules-title">
+  
+<h2>RULES AND ETTIQUETE</h2>
+<div class="Refer-text">Please Refer to the labelled squash court found further below for court-specific vocabulary<br></div>
+<img src="https://i.pinimg.com/originals/bf/00/e0/bf00e0cb02612248ce4c10e2d4be6ec6.jpg" class="Rules-image" alt="Rules-image">
+<!--https://www.pinterest.ca/pin/107804984805918705/-->
+<div class="Rules-text">
+  <ol><br><br>
+    <b>Materials</b>:
+    <li>A 1-or-2-dot ball, court-safe shoes (see 'credits' for more information), <br>goggles and a racket are all you will need! </li>
+    <br><b>Before a game</b>:
+    <li> It is <i>customary</i> to warm up before a match - this typically lasts around 5 minutes</li>
+    <li>It is considered proper ettiquete to hit no more than <i>two</i> practice shots to yourself <br>before passing to your opponent</li>
+    <li>Once both you and your opponent are ready, spin the racket to see who serves!<br>If you are spinning, ask your opponent to pick a side of the racket.</li>
+    <br><b>During a game</b>:
+    <li>Serve inside the service box, on the side opposite of your opponent's backhand.<br>The serve must travel cross-court,reach above the service line, <br> and pass the short line.</li>
+    <li>Return the ball from behind the service box</li>
+    <li><b><em>Get back to the T</em></b></li>
+    <li>A point can be scored regardless of whether you are serving or returning</li>
+    <li>One point will be scored if the ball is hit out, does not reach the front wall, or bounces twice. <br>In professional games, one must respect a judge's call on whether or not a ball is out/has bounced twice</li>
+    <li>The ball CAN hit side walls and back walls, but not the roof!</li>
+    <li>If your opponent is in the way of the ball, call a LET. This forces a replay if accepted by the judge. </li>
+    <li>Occasionally, the judge will advance the LET to a STROKE. This happens when you 100% would have been able to hit the ball, and causes the play to be YOUR POINT</li>
+    <li><b><em>Games are typically played as best 2-of-3 to 11, or best 3-of-5 to 21 for more advanced levels</em></b></li>
+    <li>LINE is OUT!</li>
+    <li>Call the score after every point</li>
+    <li>Take a short break after every game</li>
+    <li>All 'out' lines on the court below are out!</li>
+    <br>After the game:
+    <li>Shake hands with your opponent, and tell them good game, regardless of who won or lost.</li>
+    <li>Exit the court, and shake hands with the referee, thanking them for their time</li>
+  </ol>
+          </div>
+          <div class="SquashCourtTitle">
+          <p> IF YOU THINK YOU'RE READY, TRY AND CLICK ON THE AREA OF THE COURT WHICH WOULD MAKE A LOUD, METALLIC SOUND WHEN HIT BY THE SQUASH BALL</p>
+        </div>
+          <div class="SquashCourt">
+            <img src="https://onemanhattansquare.com/wp-content/uploads/2020/02/article-13.jpg" alt="Squash Court" style="width:100%;">
+            <div class="left-out">OUT OF BOUNDS</div>
+            <div class="right-out">OUT OF BOUNDS</div>
+            <div class="left-wall">SIDE WALL</div>
+            <div class="right-wall">SIDE WALL</div>
+            <div class="front-wall">FRONT WALL</div>
+            <div class="out-top">OUT OF BOUNDS</div>
+            <div class="service-line">SERVICE LINE</div>
+            <div class="front-court">FRONT COURT</div>
+            <div class="half-line">HALF COURT LINE</div>
+            <div class="short-line">SHORT LINE</div>
+            <div class="service-left">LEFT <br>SERVICE BOX</div>
+            <div class="service-right">RIGHT<br>SERVICE BOX</div>
+            <button class="tin"onclick="alert('Correct!')">TIN (out)</button>
+            <!--Simple code, no java used, I know alerts are annoying but I don't want to go through the process of making it a modal box.-->
+          </div>
+        </div>  
+        
+       
+        
+        </body>
+        </html> 
+
+        <!--https://onemanhattansquare.com/squash-courts-are-the-new-must-have-amenity-in-new-york-city-buildings/-->
+
+    </body>
+    
+    
+    
+</html>
+
